@@ -1,4 +1,162 @@
-package main.java.superhero.model;
+package superhero.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SuperheroModel {
+
+    private int height;
+    private double weight;
+    private int age;
+    private int pullUps;
+    private double sleepHours;
+
+    private String level;
+
+    // Слушатели активной модели
+    private final List<ModelListener> listeners = new ArrayList<>();
+
+    public interface ModelListener {
+        void onModelChanged();
+    }
+
+    // Добавление слушателя
+    public void addListener(ModelListener listener) {
+        listeners.add(listener);
+    }
+
+    // Установка данных
+    public void setData(int height, double weight, int age,
+                        int pullUps, double sleepHours) {
+
+        validateData(height, weight, age, pullUps, sleepHours);
+
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.pullUps = pullUps;
+        this.sleepHours = sleepHours;
+
+        calculateLevel();
+
+        // Активная модель сообщает View об изменении
+        notifyListeners();
+    }
+
+    // Проверка введённых данных
+    private void validateData(int height, double weight, int age,
+                              int pullUps, double sleepHours) {
+
+        if (height < 100 || height > 250) {
+            throw new IllegalArgumentException(
+                    "Рост должен быть от 100 до 250 см."
+            );
+        }
+
+        if (weight < 30 || weight > 300) {
+            throw new IllegalArgumentException(
+                    "Вес должен быть от 30 до 300 кг."
+            );
+        }
+
+        if (age < 5 || age > 120) {
+            throw new IllegalArgumentException(
+                    "Возраст должен быть от 5 до 120 лет."
+            );
+        }
+
+        if (pullUps < 0 || pullUps > 100) {
+            throw new IllegalArgumentException(
+                    "Количество подтягиваний должно быть от 0 до 100."
+            );
+        }
+
+        if (sleepHours < 0 || sleepHours > 24) {
+            throw new IllegalArgumentException(
+                    "Количество часов сна должно быть от 0 до 24."
+            );
+        }
+    }
+
+    // Расчёт уровня супергероя
+    private void calculateLevel() {
+
+        int points = 0;
+
+        // Оценка подтягиваний
+        if (pullUps >= 20) {
+            points += 3;
+        } else if (pullUps >= 10) {
+            points += 2;
+        } else if (pullUps >= 5) {
+            points += 1;
+        }
+
+        // Оценка сна
+        if (sleepHours >= 7 && sleepHours <= 9) {
+            points += 3;
+        } else if (sleepHours >= 6) {
+            points += 1;
+        } else if (sleepHours < 5) {
+            points -= 2;
+        }
+
+        // Оценка возраста
+        if (age >= 18 && age <= 40) {
+            points += 2;
+        } else if (age > 40) {
+            points += 1;
+        }
+
+        // Оценка веса относительно роста
+        double bmi = weight / Math.pow(height / 100.0, 2);
+
+        if (bmi >= 18.5 && bmi <= 25) {
+            points += 2;
+        } else if (bmi >= 17 && bmi <= 30) {
+            points += 1;
+        }
+
+        // Определение уровня
+        if (sleepHours < 5) {
+            level = "Нужно срочно в отпуск";
+        } else if (points >= 8) {
+            level = "Легенда";
+        } else if (points >= 5) {
+            level = "Герой";
+        } else {
+            level = "Стажёр";
+        }
+    }
+
+    // Уведомление всех слушателей
+    private void notifyListeners() {
+        for (ModelListener listener : listeners) {
+            listener.onModelChanged();
+        }
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getPullUps() {
+        return pullUps;
+    }
+
+    public double getSleepHours() {
+        return sleepHours;
+    }
+
+    public String getLevel() {
+        return level;
+    }
 }
