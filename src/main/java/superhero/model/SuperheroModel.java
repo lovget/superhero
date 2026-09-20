@@ -3,7 +3,6 @@ package superhero.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Stores application state, validates input and calculates the game level. */
 public class SuperheroModel {
 
     private int height;
@@ -14,7 +13,6 @@ public class SuperheroModel {
     private String level;
     private boolean hasData;
 
-    /** Listener used by the active model to notify its views. */
     public interface ModelListener {
         void onModelChanged();
     }
@@ -25,10 +23,6 @@ public class SuperheroModel {
         listeners.add(listener);
     }
 
-    /**
-     * Validates and saves all values as one state change. Invalid values do not
-     * replace the previous successful state.
-     */
     public void setData(int height, double weight, int age, int pullUps, double sleepHours) {
         validateData(height, weight, age, pullUps, sleepHours);
 
@@ -60,7 +54,6 @@ public class SuperheroModel {
         }
     }
 
-    /** Calculates a simple game score; it is not a medical assessment. */
     private void calculateLevel() {
         int points = 0;
 

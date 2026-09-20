@@ -12,8 +12,9 @@ ADR (почему принято архитектурное решение)
 
 | Требование | Реализация в SDD | Архитектурное решение |
 |---|---|---|
-| REQ-FUNC-001 — Ввод данных | `InputDialog` | ADR-0001 |
-| REQ-FUNC-002 — Проверка данных | `SuperheroModel.validateData()` | ADR-0001 |
-| REQ-FUNC-003 — Расчёт уровня | `SuperheroModel` | ADR-0001 |
-| REQ-FUNC-004 — Отображение результата | `MainView` | ADR-0001 |
-| REQ-FUNC-005 — Обновление интерфейса | `ModelListener` | ADR-0001 |
+| REQ-FUNC-001 — Ввод данных | Разделы 3.1 и 3.3: `InputDialog` | ADR-0001 |
+| REQ-FUNC-002 — Проверка данных | Разделы 3.3 и 4.3: `SuperheroModel.validateData()` | ADR-0001 |
+| REQ-FUNC-003 — Расчёт уровня | Разделы 3.1, 3.3 и 4.1: `SuperheroModel` | ADR-0001 |
+| REQ-FUNC-004 — Отображение результата | Разделы 3.2 и 4.4: `MainView` | ADR-0001 |
+| REQ-FUNC-005 — Обработка ошибок | Разделы 3.3 и 4.3: `SuperheroController` | ADR-0001 |
+| REQ-FUNC-006 — Обновление интерфейса | Разделы 3.1, 3.3 и 4.2: `ModelListener` и `MainView` | ADR-0001 |

@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
 import superhero.controller.SuperheroController;
 import superhero.model.SuperheroModel;
 
-/** Main window. It refreshes itself when the active model sends a notification. */
 public class MainView extends JFrame implements SuperheroModel.ModelListener {
 
     private final SuperheroModel model;
