@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import superhero.model.SuperheroModel;
 import superhero.view.InputDialog;
 
+/** Connects GUI actions with the model and reports input errors to the user. */
 public class SuperheroController {
 
     private final SuperheroModel model;

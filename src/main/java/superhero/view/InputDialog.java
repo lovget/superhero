@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import superhero.controller.SuperheroController;
 
+/** Modal dialog that collects text values and sends them to the controller. */
 public class InputDialog extends JDialog {
 
     private final JTextField heightField = new JTextField(12);

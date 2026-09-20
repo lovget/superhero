@@ -5,6 +5,7 @@ import superhero.controller.SuperheroController;
 import superhero.model.SuperheroModel;
 import superhero.view.MainView;
 
+/** Entry point of the Swing application. */
 public class Main {
 
     public static void main(String[] args) {
